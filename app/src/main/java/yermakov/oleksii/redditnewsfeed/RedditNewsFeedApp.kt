@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import yermakov.oleksii.redditnewsfeed.ui.theme.RedditNewsFeedAppTheme
+import yermakov.oleksii.redditnewsfeed.ui.theme.screens.RedditTopScreen
 
 @Composable
 fun RedditNewsFeedApp(
@@ -28,8 +29,7 @@ modifier: Modifier = Modifier
                 TopBar()
             },
         ){innerPadding ->
-        Text(text = "Hello",
-            modifier = Modifier.padding(innerPadding))
+            RedditTopScreen(modifier = Modifier.padding(innerPadding))
     }
 }
 

@@ -6,7 +6,9 @@ import android.graphics.Bitmap
 import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Toast
+import androidx.compose.ui.graphics.Color
 import java.io.OutputStream
+import kotlin.random.Random
 
 fun saveImageToGallery(context: Context, bitmap: Bitmap) {
     val filename = "${System.currentTimeMillis()}.jpg"
@@ -38,4 +40,12 @@ fun saveImageToGallery(context: Context, bitmap: Bitmap) {
     } finally {
         outputStream?.close()
     }
+}
+
+fun generateRandomMutedColor(): Color {
+    val random = Random
+    val red = random.nextInt(128) + 128
+    val green = random.nextInt(128) + 128
+    val blue = random.nextInt(128) + 128
+    return Color(red, green, blue)
 }

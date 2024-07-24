@@ -64,7 +64,7 @@ fun ImageWithNavigation(
             bitmap = (result.result.drawable).toBitmap()
         },
         contentDescription = "Post Image",
-        contentScale = ContentScale.Fit,
+        contentScale = ContentScale.Crop,
         modifier = modifier
             .clickable {
                 coroutineScope.launch {

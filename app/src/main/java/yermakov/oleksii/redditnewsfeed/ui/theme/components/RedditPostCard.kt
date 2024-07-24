@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import yermakov.oleksii.redditnewsfeed.R
 import yermakov.oleksii.redditnewsfeed.domain.RedditPost
 import yermakov.oleksii.redditnewsfeed.ui.theme.RedditNewsFeedAppTheme
+import yermakov.oleksii.redditnewsfeed.ui.theme.util.generateRandomMutedColor
 
 @Composable
 fun RedditPostCard(
@@ -26,10 +27,9 @@ fun RedditPostCard(
     Card(
         shape = RoundedCornerShape(8.dp),
         modifier = modifier
-            .padding(8.dp)
             .defaultMinSize(),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.background,
+            containerColor = generateRandomMutedColor(),
             contentColor = MaterialTheme.colorScheme.secondary
         )
     ) {
