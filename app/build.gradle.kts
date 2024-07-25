@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -73,6 +74,10 @@ dependencies {
     // Hilt for Jetpack Compose
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.hilt)
+    // Retrofit
+    implementation(libs.retrofit2.retrofit)
+    //Gson
+    implementation(libs.converter.gson)
     kapt(libs.hilt.compiler)
 
     testImplementation(libs.junit)

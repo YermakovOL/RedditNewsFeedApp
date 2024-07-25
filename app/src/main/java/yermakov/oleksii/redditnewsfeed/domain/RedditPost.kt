@@ -1,11 +1,15 @@
 package yermakov.oleksii.redditnewsfeed.domain
 
-import androidx.lifecycle.ViewModel
+import com.google.gson.annotations.SerializedName
 
 data class RedditPost(
+    @SerializedName("title")
     val postName: String,
+    @SerializedName("author")
     val postAuthor: String,
+    @SerializedName("num_comments")
     val countOfComments: Int,
+    @SerializedName("thumbnail")
     val thumbnail: String?
 )
 
@@ -37,7 +41,7 @@ fun dummyRedditPostList(): List<RedditPost> {
             postName = "How to protect yourself from phishing attacks?",
             postAuthor = "SecurityExpert",
             countOfComments = 2,
-            thumbnail = null
+            thumbnail = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGhyMjtyWCbbD9aMyFj-evx_AB9JllEvPs5w&s"
         ),
     )
 }
