@@ -5,6 +5,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -64,8 +66,10 @@ fun ImageWithNavigation(
             bitmap = (result.result.drawable).toBitmap()
         },
         contentDescription = "Post Image",
-        contentScale = ContentScale.Crop,
+        contentScale = ContentScale.Crop, // Crop to fit within the specified dimensions
         modifier = modifier
+            .fillMaxWidth()
+            .height(200.dp)
             .clickable {
                 coroutineScope.launch {
                     showFullScreenImage = true
