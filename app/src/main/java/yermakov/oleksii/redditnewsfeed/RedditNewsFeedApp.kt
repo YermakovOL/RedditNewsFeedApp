@@ -14,19 +14,32 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import kotlinx.coroutines.launch
 import yermakov.oleksii.redditnewsfeed.ui.theme.RedditNewsFeedAppTheme
 import yermakov.oleksii.redditnewsfeed.ui.theme.screens.RedditTopScreen
+import yermakov.oleksii.redditnewsfeed.ui.theme.screens.RedditTopViewModel
 
 @Composable
 fun RedditNewsFeedApp(
 modifier: Modifier = Modifier
 ) {
+    val viewModel: RedditTopViewModel = hiltViewModel()
+    val coroutineScope = rememberCoroutineScope()
+
+    fun refreshData() {
+        coroutineScope.launch {
+            viewModel.fetchTopRedditPosts()
+        }
+    }
+
     Scaffold(
         modifier = modifier,
         topBar = {
-                TopBar()
+                TopBar(onRefresh = { refreshData()})
             },
         ){innerPadding ->
             RedditTopScreen(modifier = Modifier.padding(innerPadding))
@@ -36,6 +49,7 @@ modifier: Modifier = Modifier
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
+    onRefresh: () -> Unit
 ) {
     CenterAlignedTopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
@@ -46,7 +60,7 @@ fun TopBar(
             Text("Reddit Top")
         },
         navigationIcon = {
-            IconButton(onClick = { /* TODO */ }) {
+            IconButton(onClick = { onRefresh() } ){
                 Icon(
                     imageVector = Icons.Filled.Refresh,
                     contentDescription = "Retry"
