@@ -17,7 +17,6 @@ class RedditTopViewModel @Inject constructor(private val redditDao: RedditDao) :
 
     val displayedPosts = _displayedPosts.asStateFlow()
 
-
     fun fetchTopRedditPosts() = viewModelScope.launch {
         val posts = redditDao.fetchTopPosts()
         posts?.let {
@@ -27,7 +26,7 @@ class RedditTopViewModel @Inject constructor(private val redditDao: RedditDao) :
         }
     }
 
-    private fun updateDisplayedPosts(page: Int, pageSize: Int = 10) {
+    fun updateDisplayedPosts(page: Int, pageSize: Int = 20) {
         val start = (page - 1) * pageSize
         val end = minOf(start + pageSize, allPosts.size)
         if (start < end) {

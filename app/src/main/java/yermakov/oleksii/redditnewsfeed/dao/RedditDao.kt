@@ -8,7 +8,7 @@ import javax.inject.Singleton
 
 @Singleton
 class RedditDao @Inject constructor(private val api: RedditApi) {
-    suspend fun fetchTopPosts(limit: Int = 50): List<RedditPost>? {
+    suspend fun fetchTopPosts(limit: Int = 100): List<RedditPost>? {
         return try {
             val redditApiResponse = api.getTopPosts(limit)
             redditApiResponse.listingData.children.map { child -> child.data } ?: emptyList()
